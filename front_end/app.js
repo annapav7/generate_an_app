@@ -1,5 +1,8 @@
-const apiKey = '30e20b2bf790aec88f1787f1fe9f1028'; // Replace with your OpenWeatherMap API key  // 30e20b2bf790aec88f1787f1fe9f1028
+const apiKey = '30e20b2bf790aec88f1787f1fe9f1028'; 
 const baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
+// require('dotenv').config()
+// import dotenv from 'dotenv'
 
 // DOM elements
 const cityInput = document.getElementById('city-input');
@@ -20,11 +23,15 @@ const fetchWeather = async (city) => {
     const response = await fetch(url);
     const data = await response.json();
 
+    const celsius = data.main.temp;
+    const fahrenheit = (celsius * 9/5) + 32;  
+
     if (response.ok) {
       // Update UI with weather data
       cityName.textContent = `${data.name}, ${data.sys.country}`;
       weatherDescription.textContent = data.weather[0].description;
-      temperature.textContent = `Temperature: ${data.main.temp}°C`;
+      // temperature.textContent = `Temperature: ${data.main.temp}°C`;
+      temperature.textContent = `Temperature: ${celsius}°C / ${fahrenheit.toFixed(1)}°F`;
       humidity.textContent = `Humidity: ${data.main.humidity}%`;
       windSpeed.textContent = `Wind Speed: ${data.wind.speed} km/h`;
 

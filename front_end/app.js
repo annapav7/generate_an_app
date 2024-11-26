@@ -17,7 +17,7 @@ const windSpeed = document.getElementById('wind-speed');
 
 // Fetch weather data
 const fetchWeather = async (city) => {
-  const url = `${baseUrl}?q=${city}&appid=${apiKey}&units=metric`; // Units in metric (Celsius)
+  const url = `${baseUrl}?q=${city}&appid=${apiKey}&units=metric`; // Units in metric (Celsius / Fahrenheit)
 
   try {
     const response = await fetch(url);
